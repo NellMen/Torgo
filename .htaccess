@@ -1,0 +1,11 @@
+RewriteEngine On
+
+# REST API
+RewriteRule ^api/?(.*)$ api/index.php [QSA,L]
+
+# Статика из public (сборка React)
+RewriteCond %{DOCUMENT_ROOT}/public/$1 -f
+RewriteRule ^(.+)$ public/$1 [L]
+
+# SPA fallback
+RewriteRule ^ public/index.html [L]
